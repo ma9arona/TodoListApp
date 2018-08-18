@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   container : {
     backgroundColor : "#eee",
     margin : 5,
-    borderRadius : 10
+    borderRadius : 10,
+    width : "97%"
   },
   content : {
     height : 100, // costumize it later

@@ -4,50 +4,74 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  FlatList
 } from 'react-native';
 import TodoItem from './components/todoItem';
-
-const Realm = require("realm");
-
-let RouteView = createStackNavigator({
-  Home : HomeScreen
-},{
-  initialRouteName : "Home"
-});
+import {createMaterialTopTabNavigator} from 'react-navigation';
 
 
-export default class App extends Component {
+class HomeScreen extends Component {
 
-  ComponentDidMount() {
-    this.items = [
-      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
-      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
-      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
-      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"}
-    ];
-  }
+  items = [
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+    { title : "this is a test Title", date : "05/11", details : "these are some details !!!"},
+  ];
 
   render() {
     return (
-      <FlatList
-        data={[this.items]}
-        renderItem={( {item} ) => {
-          <TodoItem title={item.title} date={item.date} details={item.details} />
-        }}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={this.items}
+          renderItem={({ item }) => (
+            <TodoItem title={item.title} date={item.date} details={item.details} />
+          )}
+        />
+      </View>
     );
   }
 }
-<<<<<<< HEAD
-=======
+
+class SettingsScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Settings screen</Text>
+      </View>
+    );
+  }
+}
+
+const RouteStack = createMaterialTopTabNavigator({
+  Todos : {
+    screen : HomeScreen,
+  },
+  Settings : {
+    screen : SettingsScreen,
+  }
+}, {
+  initialRouteName : 'Todos',
+
+});
+
+export default class App extends Component {
+  render() {
+    return <RouteStack />;
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fcf5ff',
   },
   welcome: {
     fontSize: 21,
@@ -60,4 +84,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
->>>>>>> 74e0d969017b3c18c7ab39e1cf1b5cce460e3c9a
