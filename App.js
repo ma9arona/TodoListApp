@@ -39,3 +39,25 @@ export default class App extends Component {
     );
   }
 }
+<<<<<<< HEAD
+=======
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 21,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
+>>>>>>> 74e0d969017b3c18c7ab39e1cf1b5cce460e3c9a
