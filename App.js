@@ -1,58 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+import TodoItem from './components/todoItem';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const Realm = require("realm");
+
+let RouteView = createStackNavigator({
+  Home : HomeScreen
+},{
+  initialRouteName : "Home"
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+
+export default class App extends Component {
+
+  ComponentDidMount() {
+    this.items = [
+      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
+      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
+      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"},
+      {title : "This is a Title", date : "18/08", details :"this a dummy content that you should ignore completely"}
+    ];
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <FlatList
+        data={[this.items]}
+        renderItem={( {item} ) => {
+          <TodoItem title={item.title} date={item.date} details={item.details} />
+        }}
+      />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
