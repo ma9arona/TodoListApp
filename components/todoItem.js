@@ -5,9 +5,10 @@ import {
   StyleSheet,
   LayoutAnimation,
   NativeModules,
-  TouchableOpacity,
-  Image
+  TouchableOpacity
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import IoIcons from 'react-native-vector-icons/Ionicons';
 
 const { UIManager } = NativeModules;
 
@@ -18,12 +19,12 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 export default class TodoItem extends React.Component {
 
   optionsImg = [
-    { uri : require("../images/trash-can.png") },
-    { uri : require("../images/edit.png") },
-    { uri : require("../images/time-edit.png") }
+    { comp : (<Icon name="trash-o" size={30} color="#555" />) },
+    { comp : (<Icon name="edit" size={30} color="#555" />) },
+    { comp : (<IoIcons name="md-time" size={30} color="#555" />) }
   ];
 
-  btnImgs = [require("../images/up-arrow.png"), require("../images/down-arrow.png")];
+  btnImgs = [(<Icon name="chevron-up" size={20} />), (<Icon name="chevron-down" size={20} />)];
 
   constructor(props) {
     super(props);
@@ -44,7 +45,7 @@ export default class TodoItem extends React.Component {
     let images = this.optionsImg.map((item, i) => (
       <TouchableOpacity key={i}>
         <View style={[styles.imgCont, { padding : this.state.padding}]}>
-          <Image key={i} source={item.uri} style={{width : 30, height : 30}} />
+          {item.comp}
         </View>
       </TouchableOpacity>
     ));
@@ -68,7 +69,7 @@ export default class TodoItem extends React.Component {
         <TouchableOpacity
             onPress={this.state.reduced? this._extand.bind(this):this._reduce.bind(this)}>
           <View style={styles.extandBtn}>
-              <Image source={btn} style={{width : 20, height : 20}}/>
+              {btn}
           </View>
         </TouchableOpacity>
       </View>
